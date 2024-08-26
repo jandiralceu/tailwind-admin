@@ -1,43 +1,43 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from "react";
+import { Link } from "@remix-run/react";
 
 export default function DropdownNotification() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [openDropdownNotification, setOpenDropdownNotification] =
+    useState(false);
 
-  const trigger = useRef(null);
-  const dropdown = useRef(null);
+  const trigger = useRef<HTMLButtonElement | null>(null);
+  const dropdown = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
       if (!dropdown.current) return;
       if (
-        !dropdownOpen ||
-        dropdown.current.contains(target) ||
-        trigger.current.contains(target)
+        !openDropdownNotification ||
+        dropdown.current?.contains(target as Node) ||
+        trigger.current?.contains(target as Node)
       )
         return;
-      setDropdownOpen(false);
+      setOpenDropdownNotification(false);
     };
-    document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
-  }, []);
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
+  }, [openDropdownNotification]);
 
   // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ keyCode }: KeyboardEvent) => {
-      if (!dropdownOpen || keyCode !== 27) return;
-      setDropdownOpen(false);
+    const keyHandler = ({ key }: KeyboardEvent) => {
+      if (!openDropdownNotification || key !== "Escape") return;
+      setOpenDropdownNotification(false);
     };
-    document.addEventListener('keydown', keyHandler);
-    return () => document.removeEventListener('keydown', keyHandler);
-  }, []);
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
+  }, [openDropdownNotification]);
 
   return (
     <li className="relative">
-      <Link
+      <button
         ref={trigger}
-        onClick={() => setDropdownOpen(!dropdownOpen)}
-        to="#"
+        onClick={() => setOpenDropdownNotification(!openDropdownNotification)}
         className="relative flex h-8.5 w-8.5 items-center justify-center rounded-full border-[0.5px] border-stroke bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
       >
         <span className="absolute -top-0.5 right-0 z-1 h-2 w-2 rounded-full bg-meta-1">
@@ -57,14 +57,14 @@ export default function DropdownNotification() {
             fill=""
           />
         </svg>
-      </Link>
+      </button>
 
       <div
         ref={dropdown}
-        onFocus={() => setDropdownOpen(true)}
-        onBlur={() => setDropdownOpen(false)}
+        onFocus={() => setOpenDropdownNotification(true)}
+        onBlur={() => setOpenDropdownNotification(false)}
         className={`absolute -right-27 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80 ${
-          dropdownOpen === true ? 'block' : 'hidden'
+          openDropdownNotification ? "block" : "hidden"
         }`}
       >
         <div className="px-4.5 py-3">
@@ -75,12 +75,12 @@ export default function DropdownNotification() {
           <li>
             <Link
               className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              to="#"
+              to="/"
             >
               <p className="text-sm">
                 <span className="text-black dark:text-white">
                   Edit your information in a swipe
-                </span>{' '}
+                </span>{" "}
                 Sint occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim.
               </p>
@@ -91,12 +91,12 @@ export default function DropdownNotification() {
           <li>
             <Link
               className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              to="#"
+              to="/"
             >
               <p className="text-sm">
                 <span className="text-black dark:text-white">
                   It is a long established fact
-                </span>{' '}
+                </span>{" "}
                 that a reader will be distracted by the readable.
               </p>
 
@@ -106,12 +106,12 @@ export default function DropdownNotification() {
           <li>
             <Link
               className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              to="#"
+              to="/"
             >
               <p className="text-sm">
                 <span className="text-black dark:text-white">
                   There are many variations
-                </span>{' '}
+                </span>{" "}
                 of passages of Lorem Ipsum available, but the majority have
                 suffered
               </p>
@@ -122,12 +122,12 @@ export default function DropdownNotification() {
           <li>
             <Link
               className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              to="#"
+              to="/"
             >
               <p className="text-sm">
                 <span className="text-black dark:text-white">
                   There are many variations
-                </span>{' '}
+                </span>{" "}
                 of passages of Lorem Ipsum available, but the majority have
                 suffered
               </p>
@@ -139,4 +139,4 @@ export default function DropdownNotification() {
       </div>
     </li>
   );
-};
+}

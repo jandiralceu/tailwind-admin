@@ -1,47 +1,50 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from "react";
+import { Link } from "@remix-run/react";
 
-import UserOne from '../../assets/images/user/user-01.png';
+import UserOne from "~/assets/images/user/user-01.png";
 
 export default function DropdownUser() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [openDropdownUser, setOpenDropdownUser] = useState(false);
 
-  const trigger = useRef(null);
-  const dropdown = useRef(null);
+  const trigger = useRef<HTMLButtonElement | null>(null);
+  const dropdown = useRef<HTMLDivElement | null>(null);
 
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
       if (!dropdown.current) return;
       if (
-        !dropdownOpen ||
-        dropdown.current.contains(target) ||
-        trigger.current.contains(target)
+        !openDropdownUser ||
+        dropdown.current?.contains(target as Node) ||
+        trigger.current?.contains(target as Node)
       )
         return;
-      setDropdownOpen(false);
+      setOpenDropdownUser(false);
     };
-    document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
-  }, []);
+
+    document.addEventListener("click", clickHandler);
+
+    return () => document.removeEventListener("click", clickHandler);
+  }, [openDropdownUser]);
 
   // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ keyCode }: KeyboardEvent) => {
-      if (!dropdownOpen || keyCode !== 27) return;
-      setDropdownOpen(false);
+    const keyHandler = ({ key }: KeyboardEvent) => {
+      if (!openDropdownUser || key !== "Escape") return;
+      setOpenDropdownUser(false);
     };
-    document.addEventListener('keydown', keyHandler);
-    return () => document.removeEventListener('keydown', keyHandler);
-  }, []);
+
+    document.addEventListener("keydown", keyHandler);
+
+    return () => document.removeEventListener("keydown", keyHandler);
+  }, [openDropdownUser]);
 
   return (
     <div className="relative">
-      <Link
+      <button
         ref={trigger}
-        onClick={() => setDropdownOpen(!dropdownOpen)}
+        onClick={() => setOpenDropdownUser(!openDropdownUser)}
         className="flex items-center gap-4"
-        to="#"
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
@@ -56,7 +59,7 @@ export default function DropdownUser() {
 
         <svg
           className={`hidden fill-current sm:block ${
-            dropdownOpen ? 'rotate-180' : ''
+            openDropdownUser ? "rotate-180" : ""
           }`}
           width="12"
           height="8"
@@ -71,15 +74,15 @@ export default function DropdownUser() {
             fill=""
           />
         </svg>
-      </Link>
+      </button>
 
       {/* <!-- Dropdown Start --> */}
       <div
         ref={dropdown}
-        onFocus={() => setDropdownOpen(true)}
-        onBlur={() => setDropdownOpen(false)}
+        onFocus={() => setOpenDropdownUser(true)}
+        onBlur={() => setOpenDropdownUser(false)}
         className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${
-          dropdownOpen === true ? 'block' : 'hidden'
+          openDropdownUser ? "block" : "hidden"
         }`}
       >
         <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
@@ -110,7 +113,7 @@ export default function DropdownUser() {
           </li>
           <li>
             <Link
-              to="#"
+              to="/"
               className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
             >
               <svg
@@ -179,5 +182,4 @@ export default function DropdownUser() {
       {/* <!-- Dropdown End --> */}
     </div>
   );
-};
-
+}

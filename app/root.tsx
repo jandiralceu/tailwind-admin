@@ -5,6 +5,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+
 import "./tailwind.css";
 import "./satoshi.css";
 
@@ -16,6 +17,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+          <title>ADMIN | Ação Premiada Genial Investimentos </title>
       </head>
       <body>
         {children}

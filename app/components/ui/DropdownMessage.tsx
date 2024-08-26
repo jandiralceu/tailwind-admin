@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "@remix-run/react";
 
 import UserOne from '../../assets/images/user/user-01.png';
 import UserTwo from '../../assets/images/user/user-02.png';
@@ -7,44 +7,47 @@ import UserThree from '../../assets/images/user/user-03.png';
 import UserFour from '../../assets/images/user/user-04.png';
 
 export default function DropdownMessage() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [openDropdownMessage, setOpenDropdownMessage] = useState(false);
 
-  const trigger = useRef(null);
-  const dropdown = useRef(null);
+  const trigger = useRef<HTMLButtonElement | null>(null);
+  const dropdown = useRef<HTMLDivElement | null>(null);
 
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
       if (!dropdown.current) return;
       if (
-        !dropdownOpen ||
-        dropdown.current.contains(target) ||
-        trigger.current.contains(target)
+        !openDropdownMessage ||
+        dropdown.current?.contains(target as Node) ||
+        trigger.current?.contains(target as Node)
       )
         return;
-      setDropdownOpen(false);
+      setOpenDropdownMessage(false);
     };
+
     document.addEventListener('click', clickHandler);
+
     return () => document.removeEventListener('click', clickHandler);
-  }, []);
+  }, [openDropdownMessage]);
 
   // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ keyCode }: KeyboardEvent) => {
-      if (!dropdownOpen || keyCode !== 27) return;
-      setDropdownOpen(false);
+    const keyHandler = ({ key }: KeyboardEvent) => {
+      if (!openDropdownMessage || key !== "Escape") return;
+      setOpenDropdownMessage(false);
     };
+
     document.addEventListener('keydown', keyHandler);
+
     return () => document.removeEventListener('keydown', keyHandler);
-  }, []);
+  }, [openDropdownMessage]);
 
   return (
-    <li className="relative" x-data="{ dropdownOpen: false, notifying: true }">
-      <Link
+    <li className="relative">
+      <button
         ref={trigger}
-        onClick={() => setDropdownOpen(!dropdownOpen)}
+        onClick={() => setOpenDropdownMessage(!openDropdownMessage)}
         className="relative flex h-8.5 w-8.5 items-center justify-center rounded-full border-[0.5px] border-stroke bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
-        to="#"
       >
         <span className="absolute -top-0.5 -right-0.5 z-1 h-2 w-2 rounded-full bg-meta-1">
           <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-meta-1 opacity-75"></span>
@@ -75,15 +78,15 @@ export default function DropdownMessage() {
             fill=""
           />
         </svg>
-      </Link>
+      </button>
 
       {/* <!-- Dropdown Start --> */}
       <div
         ref={dropdown}
-        onFocus={() => setDropdownOpen(true)}
-        onBlur={() => setDropdownOpen(false)}
+        onFocus={() => setOpenDropdownMessage(true)}
+        onBlur={() => setOpenDropdownMessage(false)}
         className={`absolute -right-16 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80 ${
-          dropdownOpen === true ? 'block' : 'hidden'
+          openDropdownMessage ? 'block' : 'hidden'
         }`}
       >
         <div className="px-4.5 py-3">
@@ -186,4 +189,4 @@ export default function DropdownMessage() {
       {/* <!-- Dropdown End --> */}
     </li>
   );
-};
+}

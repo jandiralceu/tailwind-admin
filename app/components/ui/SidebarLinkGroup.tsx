@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState } from "react";
 
 interface SidebarLinkGroupProps {
   children: (handleClick: () => void, open: boolean) => ReactNode;
@@ -16,4 +16,4 @@ export default function SidebarLinkGroup({
   };
 
   return <li>{children(handleClick, open)}</li>;
-};
+}
