@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@remix-run/react";
 
-import UserOne from '../../assets/images/user/user-01.png';
-import UserTwo from '../../assets/images/user/user-02.png';
-import UserThree from '../../assets/images/user/user-03.png';
-import UserFour from '../../assets/images/user/user-04.png';
+import UserOne from "../../assets/images/user/user-01.png";
+import UserTwo from "../../assets/images/user/user-02.png";
+import UserThree from "../../assets/images/user/user-03.png";
+import UserFour from "../../assets/images/user/user-04.png";
 
 export default function DropdownMessage() {
   const [openDropdownMessage, setOpenDropdownMessage] = useState(false);
@@ -25,9 +25,9 @@ export default function DropdownMessage() {
       setOpenDropdownMessage(false);
     };
 
-    document.addEventListener('click', clickHandler);
+    document.addEventListener("click", clickHandler);
 
-    return () => document.removeEventListener('click', clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
   }, [openDropdownMessage]);
 
   // close if the esc key is pressed
@@ -37,9 +37,9 @@ export default function DropdownMessage() {
       setOpenDropdownMessage(false);
     };
 
-    document.addEventListener('keydown', keyHandler);
+    document.addEventListener("keydown", keyHandler);
 
-    return () => document.removeEventListener('keydown', keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
   }, [openDropdownMessage]);
 
   return (
@@ -86,7 +86,7 @@ export default function DropdownMessage() {
         onFocus={() => setOpenDropdownMessage(true)}
         onBlur={() => setOpenDropdownMessage(false)}
         className={`absolute -right-16 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80 ${
-          openDropdownMessage ? 'block' : 'hidden'
+          openDropdownMessage ? "block" : "hidden"
         }`}
       >
         <div className="px-4.5 py-3">

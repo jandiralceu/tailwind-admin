@@ -16,13 +16,13 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'app/assets/images/**/*',
-          dest: 'assets/images'
-        }
-      ]
-    })
+          src: "app/assets/images/**/*",
+          dest: "assets/images",
+        },
+      ],
+    }),
   ],
   server: {
     port: 3200,
-  }
+  },
 });

@@ -1,17 +1,13 @@
-import {Outlet} from "@remix-run/react";
+import { Outlet } from "@remix-run/react";
 
-function Layout({children}: {children: React.ReactNode}) {
-    return (
-        <div>
-            {children}
-        </div>
-    );
+function Layout({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>;
 }
 
 export default function Auth() {
-    return (
-            <Layout>
-                <Outlet />
-            </Layout>
-    );
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
 }

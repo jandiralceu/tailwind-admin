@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import {useThemeMode} from "~/store";
+import { useEffect } from "react";
+import { useThemeMode } from "~/store";
 
 const useColorMode = () => {
   const { mode, setMode } = useThemeMode();
@@ -7,12 +7,10 @@ const useColorMode = () => {
   useEffect(() => {
     if (!window) return;
 
-    const className = 'dark';
+    const className = "dark";
     const bodyClass = window.document.body.classList;
 
-    mode === 'dark'
-      ? bodyClass.add(className)
-      : bodyClass.remove(className);
+    mode === "dark" ? bodyClass.add(className) : bodyClass.remove(className);
   }, [mode]);
 
   return [mode, setMode];

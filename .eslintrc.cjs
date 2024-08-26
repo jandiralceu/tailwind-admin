@@ -4,7 +4,7 @@
  * and should modify this configuration to best suit your team's needs.
  */
 
-/** @type {import('eslint').Linter.Config} */
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
   parserOptions: {
@@ -14,15 +14,19 @@ module.exports = {
       jsx: true,
     },
   },
+
   env: {
     browser: true,
     commonjs: true,
     es6: true,
   },
+
   ignorePatterns: ["!**/.server", "!**/.client"],
 
+  plugins: ["prettier"],
+
   // Base config
-  extends: ["eslint:recommended"],
+  extends: ["eslint:recommended", "prettier", "plugin:prettier/recommended"],
 
   overrides: [
     // React
@@ -81,4 +85,8 @@ module.exports = {
       },
     },
   ],
+
+  rules: {
+    "prettier/prettier": ["error"],
+  },
 };
