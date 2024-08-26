@@ -1,2 +1,8 @@
 node_modules
 build
+.husky
+.nvmrc
+.eslintignore
+.prettierignore
+public
+.idea

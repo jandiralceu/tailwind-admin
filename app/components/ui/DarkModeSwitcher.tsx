@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import useColorMode from "../../hooks/useColorMode";
 
 export default function DarkModeSwitcher() {
-  const [mode, setMode] = useColorMode();
+  const { mode, setMode } = useColorMode();
 
   return (
     <li>

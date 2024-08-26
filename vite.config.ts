@@ -1,7 +1,6 @@
 import { vitePlugin as remix } from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
   plugins: [
@@ -13,14 +12,6 @@ export default defineConfig({
       },
     }),
     tsconfigPaths(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: "app/assets/images/**/*",
-          dest: "assets/images",
-        },
-      ],
-    }),
   ],
   server: {
     port: 3200,

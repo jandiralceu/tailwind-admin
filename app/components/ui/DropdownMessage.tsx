@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@remix-run/react";
 
-import UserOne from "../../assets/images/user/user-01.png";
-import UserTwo from "../../assets/images/user/user-02.png";
-import UserThree from "../../assets/images/user/user-03.png";
-import UserFour from "../../assets/images/user/user-04.png";
-
 export default function DropdownMessage() {
   const [openDropdownMessage, setOpenDropdownMessage] = useState(false);
 
@@ -100,7 +95,7 @@ export default function DropdownMessage() {
               to="/messages"
             >
               <div className="h-12.5 w-12.5 rounded-full">
-                <img src={UserTwo} alt="User" />
+                <img src="/assets/images/user/user-02.png" alt="User" />
               </div>
 
               <div>
@@ -118,7 +113,7 @@ export default function DropdownMessage() {
               to="/messages"
             >
               <div className="h-12.5 w-12.5 rounded-full">
-                <img src={UserOne} alt="User" />
+                <img src="/assets/images/user/user-01.png" alt="User" />
               </div>
 
               <div>
@@ -136,7 +131,7 @@ export default function DropdownMessage() {
               to="/messages"
             >
               <div className="h-12.5 w-12.5 rounded-full">
-                <img src={UserThree} alt="User" />
+                <img src="/assets/images/user/user-03.png" alt="User" />
               </div>
 
               <div>
@@ -154,7 +149,7 @@ export default function DropdownMessage() {
               to="/messages"
             >
               <div className="h-12.5 w-12.5 rounded-full">
-                <img src={UserFour} alt="User" />
+                <img src="/assets/images/user/user-04.png" alt="User" />
               </div>
 
               <div>
@@ -172,7 +167,7 @@ export default function DropdownMessage() {
               to="/messages"
             >
               <div className="h-12.5 w-12.5 rounded-full">
-                <img src={UserTwo} alt="User" />
+                <img src="/assets/images/user/user-02.png" alt="User" />
               </div>
 
               <div>

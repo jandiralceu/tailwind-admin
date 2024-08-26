@@ -1,0 +1,40 @@
+name: Develop - Pull Request
+run-name: ${{ github.actor }} is opening a pull request candidate.
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - opened
+      - reopened
+      - edited
+
+jobs:
+  lint-test-and-coverage:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: 🏃‍ Checkout
+        uses: actions/checkout@v4
+
+      - name: 📌 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+
+      - name: 🕵🏻 Lint coding
+        run: npm run lint
+
+      - name: 🩺 Check code formatting
+        run: npm run prettier:check
+
+      - name: 🧪 Run tests
+        run: echo "No tests to run."
+
+      - name: 🗃️ Archive code coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/

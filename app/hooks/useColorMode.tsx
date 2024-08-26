@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { useThemeMode } from "~/store";
 
 const useColorMode = () => {
@@ -13,7 +14,7 @@ const useColorMode = () => {
     mode === "dark" ? bodyClass.add(className) : bodyClass.remove(className);
   }, [mode]);
 
-  return [mode, setMode];
+  return { mode, setMode };
 };
 
 export default useColorMode;

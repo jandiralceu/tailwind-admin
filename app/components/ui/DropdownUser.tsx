@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@remix-run/react";
 
-import UserOne from "~/assets/images/user/user-01.png";
-
 export default function DropdownUser() {
   const [openDropdownUser, setOpenDropdownUser] = useState(false);
 
@@ -54,7 +52,7 @@ export default function DropdownUser() {
         </span>
 
         <span className="h-12 w-12 rounded-full">
-          <img src={UserOne} alt="User" />
+          <img src="/assets/images/user/user-01.png" alt="User" />
         </span>
 
         <svg

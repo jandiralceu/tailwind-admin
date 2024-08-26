@@ -21,7 +21,8 @@ module.exports = {
     es6: true,
   },
 
-  ignorePatterns: ["!**/.server", "!**/.client"],
+  ignorePatterns: ["node_modules", "build", "."],
+  // ignorePatterns: ["!**/.server", "!**/.client"],
 
   plugins: ["prettier"],
 
@@ -31,7 +32,7 @@ module.exports = {
   overrides: [
     // React
     {
-      files: ["**/*.{js,jsx,ts,tsx}"],
+      files: ["app/**/*.{js,jsx,ts,tsx}"],
       plugins: ["react", "jsx-a11y"],
       extends: [
         "plugin:react/recommended",
@@ -56,7 +57,7 @@ module.exports = {
 
     // Typescript
     {
-      files: ["**/*.{ts,tsx}"],
+      files: ["app/**/*.{ts,tsx}"],
       plugins: ["@typescript-eslint", "import"],
       parser: "@typescript-eslint/parser",
       settings: {

@@ -3,18 +3,18 @@ import { persist, devtools } from "zustand/middleware";
 
 import { ThemeMode } from "~/models";
 
-interface IGlobalState {
+interface IThemeModeState {
   mode: ThemeMode;
 }
 
-interface IGlobalActions {
+interface ThemeModeActions {
   setMode: (mode: ThemeMode) => void;
 }
 
-type IGlobalStore = IGlobalState & IGlobalActions;
+type IThemeModeStore = IThemeModeState & ThemeModeActions;
 
 export const useThemeMode = create<
-  IGlobalStore,
+  IThemeModeStore,
   [["zustand/devtools", never], ["zustand/persist", unknown]]
 >(
   devtools(
