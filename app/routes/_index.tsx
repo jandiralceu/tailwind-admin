@@ -3,10 +3,10 @@ import MainLayout from "~/components/layout/main-layout";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Admin | Ação Premiada Genial Investimentos" },
+    { title: "Admin" },
     {
       name: "description",
-      content: "Gestão do concurso Ação Premiada Genial Investimentos",
+      content: "Simple admin panel",
     },
   ];
 };

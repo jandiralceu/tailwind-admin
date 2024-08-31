@@ -6,3 +6,5 @@ build
 .prettierignore
 public
 .idea
+docs/stories
+.gitignore
